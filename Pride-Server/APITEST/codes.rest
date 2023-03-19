@@ -1,0 +1,20 @@
+####CODES
+##CREATE CODES
+POST http://localhost:8080/codes/create
+Content-Type: application/json
+
+{
+      "skincode": "1000",
+      "products": [
+        "C06",
+        "T02"
+      ]
+      }
+
+###
+##GET CODES
+GET http://localhost:8080/codes/
+
+###
+##GET CODES BY IDENTIFIER
+GET http://localhost:8080/codes/111

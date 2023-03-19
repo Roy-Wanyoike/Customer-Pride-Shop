@@ -1,0 +1,46 @@
+const {connectDB} = require('../config/config')
+const Code = require ('../models/Code')
+
+module.exports= {
+    addCode:async(req, res)=>{
+        const {skincode, products, description}=req.body
+        try{
+            const result= await Code.create({
+                skincode:skincode,
+                products:products,
+                description: description
+            })
+            res.json(result)
+
+        }
+        catch(err){ 
+            console.log(err)
+        }
+
+    },
+    readCodes: async(req, res)=>{
+        try{
+           const result= await Code.find()
+           res.json(result)
+        }
+        catch(err){
+            console.log(err)
+            res.status(500).json({
+                err: err.message
+            })
+        }
+    } ,
+    getCodesByIdentifier: async(req, res)=>{
+        const {code}=req.params
+        try{
+            const result= await Code.findOne({skincode:code})
+            res.json(result)
+        }
+        catch(err){
+            console.log(err)
+            res.status(500).json({
+                err: err.message
+            })
+        }
+    }
+}
